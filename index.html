@@ -86,6 +86,7 @@
   .ev:hover { background: rgba(124,92,255,.2); }
   .ev .t { font-weight: 600; }
   .ev .tm { color: var(--accent-2); font-size: .72rem; display: block; margin-top: .1rem; }
+  .ev .cat { font-size: .62rem; text-transform: uppercase; letter-spacing: .06em; color: var(--accent-2); display: block; margin-top: .15rem; }
   .ev.past { opacity: .4; }
 
   .section-title {
@@ -261,6 +262,12 @@
       tm.className = 'tm';
       tm.textContent = ev.time;
       el.appendChild(tm);
+    }
+    if (ev.category) {
+      const cat = document.createElement('span');
+      cat.className = 'cat';
+      cat.textContent = ev.category;
+      el.appendChild(cat);
     }
     el.addEventListener('click', () => openModal(ev));
     return el;
