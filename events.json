@@ -1,14 +1,14 @@
 [
   {
     "id": "294b7721",
-    "title": "Saitsa Fall Showcase",
+    "title": "Clubs Fall Expo / Fall Showcase (11am-2pm)",
     "date": "2026-10-13",
-    "time": null,
-    "location": "SAIT (campus-wide)",
-    "description": "The club will be there — come say hi, volunteer spots get you in free. Full details to come.",
+    "time": "11:00",
+    "location": "Stan Grad Atrium",
+    "description": "Setup 10:30, event 11-2, takedown 2-2:30. Candy-git booth (~$120, already in running budget). Continues Oct 14.",
     "media": [],
     "created_at": "2026-09-13 02:17:28",
-    "updated_at": null
+    "updated_at": "2026-09-13 16:33:45"
   },
   {
     "id": "a54678fe",
@@ -19,6 +19,50 @@
     "description": "Hands-on workshop on AI agents, targeted for end of October. Date and room to be confirmed.",
     "media": [],
     "created_at": "2026-09-13 02:17:29",
+    "updated_at": null
+  },
+  {
+    "id": "c3d361c9",
+    "title": "Clubs Orientation (11am-2pm)",
+    "date": "2026-09-15",
+    "time": "11:00",
+    "location": "CA121",
+    "description": "Exec orientation - signing exec needed for grants eligibility",
+    "media": [],
+    "created_at": "2026-09-13 16:33:38",
+    "updated_at": null
+  },
+  {
+    "id": "270ec9b6",
+    "title": "Halt & Restart - live prompting lab (4-7pm)",
+    "date": "2026-09-18",
+    "time": "16:00",
+    "location": "Heritage Hall AA128",
+    "description": "Live prompting lab, Pierre & Daniil as the 'models'. SECC-approved.",
+    "media": [],
+    "created_at": "2026-09-13 16:33:39",
+    "updated_at": null
+  },
+  {
+    "id": "c0046499",
+    "title": "Meeting: AI & Humans in Media (2-3pm)",
+    "date": "2026-09-23",
+    "time": "14:00",
+    "location": "E130C",
+    "description": "Damien, Haely, Pierre, Logan",
+    "media": [],
+    "created_at": "2026-09-13 16:33:39",
+    "updated_at": null
+  },
+  {
+    "id": "2287cb13",
+    "title": "Clubs Fall Expo - day 2 (11am-2pm)",
+    "date": "2026-10-14",
+    "time": "11:00",
+    "location": "Stan Grad Atrium",
+    "description": "Takedown 2-2:30. Candy-git booth (~$120, already in running budget).",
+    "media": [],
+    "created_at": "2026-09-13 16:33:52",
     "updated_at": null
   }
 ]
