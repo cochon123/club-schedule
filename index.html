@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unnatural Intelligence — Schedule</title>
+<style>
+  :root {
+    --bg: #0d0d12;
+    --card: #16161e;
+    --card-edge: #262633;
+    --text: #e8e6f0;
+    --dim: #8a87a0;
+    --accent: #7c5cff;
+    --accent-2: #4fd1c5;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    min-height: 100vh;
+  }
+  header {
+    padding: 2.2rem 1.2rem 1rem;
+    text-align: center;
+  }
+  header h1 {
+    margin: 0 0 .3rem;
+    font-size: 1.7rem;
+    letter-spacing: .02em;
+  }
+  header h1 .ui { color: var(--accent); }
+  header p { margin: 0; color: var(--dim); font-size: .92rem; }
+  main { max-width: 720px; margin: 0 auto; padding: 0 1rem 3rem; }
+
+  .timeline { position: relative; }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 9px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: var(--card-edge);
+  }
+  .event {
+    position: relative;
+    margin: 0 0 1.1rem 2rem;
+    background: var(--card);
+    border: 1px solid var(--card-edge);
+    border-radius: 14px;
+    padding: 1rem 1.1rem;
+  }
+  .event::before {
+    content: "";
+    position: absolute;
+    left: -27px;
+    top: 1.35rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px rgba(124,92,255,.6);
+  }
+  .event.past { opacity: .45; }
+  .event.past::before { background: var(--dim); box-shadow: none; }
+  .event .date-chip {
+    display: inline-block;
+    font-size: .78rem;
+    font-weight: 600;
+    letter-spacing: .04em;
+    color: var(--accent-2);
+    background: rgba(79,209,197,.08);
+    border: 1px solid rgba(79,209,197,.25);
+    border-radius: 999px;
+    padding: .15rem .65rem;
+    margin-bottom: .5rem;
+  }
+  .event h2 { margin: .1rem 0 .35rem; font-size: 1.12rem; }
+  .event .where { color: var(--dim); font-size: .9rem; margin: .15rem 0; }
+  .event .desc { margin: .55rem 0 0; font-size: .95rem; line-height: 1.5; white-space: pre-wrap; }
+  .event .media { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .7rem; }
+  .event .media img {
+    max-width: 100%;
+    max-height: 220px;
+    border-radius: 10px;
+    border: 1px solid var(--card-edge);
+  }
+  .event .media a {
+    display: inline-block;
+    font-size: .85rem;
+    color: var(--accent);
+    text-decoration: none;
+    border: 1px solid var(--card-edge);
+    border-radius: 999px;
+    padding: .25rem .7rem;
+  }
+  .empty { text-align: center; color: var(--dim); padding: 3rem 1rem; }
+  .empty .big { font-size: 2rem; margin-bottom: .5rem; }
+  footer {
+    text-align: center;
+    color: var(--dim);
+    font-size: .8rem;
+    padding: 1rem;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Unnatural <span class="ui">Intelligence</span></h1>
+  <p>what's coming up</p>
+</header>
+<main>
+  <div class="timeline" id="timeline"></div>
+  <div class="empty" id="empty" hidden>
+    <div class="big">🫧</div>
+    <p>Nothing scheduled yet. Check back soon.</p>
+  </div>
+</main>
+<footer>served by Jelly 🐙 · updated live</footer>
+<script>
+(function () {
+  const timeline = document.getElementById('timeline');
+  const empty = document.getElementById('empty');
+
+  function fmtDate(iso) {
+    if (!iso) return 'date TBA';
+    const d = new Date(iso + 'T12:00:00');
+    return d.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' });
+  }
+
+  function card(ev, today) {
+    const el = document.createElement('article');
+    el.className = 'event' + (ev.date && ev.date < today ? ' past' : '');
+    let html = '';
+    const time = ev.time ? ' · ' + ev.time : '';
+    html += '<span class="date-chip">' + fmtDate(ev.date) + time + '</span>';
+    html += '<h2></h2>';
+    el.innerHTML = html;
+    el.querySelector('h2').textContent = ev.title;
+    if (ev.location) {
+      const where = document.createElement('div');
+      where.className = 'where';
+      where.textContent = '📍 ' + ev.location;
+      el.appendChild(where);
+    }
+    if (ev.description) {
+      const desc = document.createElement('p');
+      desc.className = 'desc';
+      desc.textContent = ev.description;
+      el.appendChild(desc);
+    }
+    if (ev.media && ev.media.length) {
+      const wrap = document.createElement('div');
+      wrap.className = 'media';
+      ev.media.forEach(u => {
+        if (/\.(png|jpe?g|gif|webp|avif)(\?|$)/i.test(u)) {
+          const img = document.createElement('img');
+          img.src = u;
+          img.alt = '';
+          img.loading = 'lazy';
+          wrap.appendChild(img);
+        } else {
+          const a = document.createElement('a');
+          a.href = u;
+          a.target = '_blank';
+          a.rel = 'noopener';
+          a.textContent = 'link';
+          wrap.appendChild(a);
+        }
+      });
+      el.appendChild(wrap);
+    }
+    return el;
+  }
+
+  async function loadData() {
+    // GitHub Pages: static events.json. Local server: the API.
+    try {
+      const r1 = await fetch('events.json', { cache: 'no-store' });
+      if (r1.ok) return await r1.json();
+    } catch (e) { /* fall through */ }
+    const r2 = await fetch('/api/events');
+    return await r2.json();
+  }
+
+  async function load() {
+    try {
+      const data = await loadData();
+      const today = new Date().toISOString().slice(0, 10);
+      const events = data.events || [];
+      timeline.innerHTML = '';
+      events.forEach(ev => timeline.appendChild(card(ev, today)));
+      empty.hidden = events.length > 0;
+    } catch (e) {
+      empty.hidden = false;
+      empty.querySelector('p').textContent = 'Could not load the schedule. Try refreshing.';
+    }
+  }
+
+  load();
+  setInterval(load, 30000); // refresh every 30s
+})();
+</script>
+</body>
+</html>
