@@ -269,10 +269,9 @@
   function render() {
     const start = addDays(mondayOf(new Date()), weekOffset * 7);
     const end = addDays(start, 6);
-    const sameMonth = start.getMonth() === end.getMonth();
-    labelEl.textContent = sameMonth
-      ? start.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) + ' – ' + end.toLocaleDateString(undefined, { day: 'numeric', year: 'numeric' })
-      : start.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) + ' – ' + end.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+    const startTxt = start.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+    const endTxt = end.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+    labelEl.textContent = startTxt + ' – ' + endTxt + ', ' + end.getFullYear();
 
     const today = todayIso();
     const byDate = {};
