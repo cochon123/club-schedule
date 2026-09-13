@@ -1,11 +1,11 @@
 [
   {
     "id": "294b7721",
-    "title": "Clubs Fall Expo / Fall Showcase (11am-2pm, setup 10:30)",
+    "title": "Clubs Fall Expo / Fall Showcase (11am-2pm, setup 10:30, takedown 2-2:30)",
     "date": "2026-10-13",
     "time": "11:00",
     "location": "Stan Grad Atrium",
-    "description": "Setup 10:30, event 11-2, takedown 2-2:30. Candy-git booth (~$120, already in running budget). Continues Oct 14.",
+    "description": "Setup 10:30, event 11-2, takedown 2-2:30 (setup and takedown both days). Candy-git booth (~$120, already in running budget).",
     "media": [],
     "created_at": "2026-09-13 02:17:28",
     "updated_at": "2026-09-13 16:33:45"
@@ -57,11 +57,11 @@
   },
   {
     "id": "2287cb13",
-    "title": "Clubs Fall Expo - day 2 (11am-2pm, takedown 2-2:30)",
+    "title": "Clubs Fall Expo - day 2 (11am-2pm, setup 10:30, takedown 2-2:30)",
     "date": "2026-10-14",
     "time": "11:00",
     "location": "Stan Grad Atrium",
-    "description": "Takedown 2-2:30. Candy-git booth (~$120, already in running budget).",
+    "description": "Setup 10:30, event 11-2, takedown 2-2:30 (setup and takedown both days). Candy-git booth (~$120, already in running budget).",
     "media": [],
     "created_at": "2026-09-13 16:33:52",
     "updated_at": null
